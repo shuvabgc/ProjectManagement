@@ -1,0 +1,55 @@
+﻿@model ProjectManagementSystem.Models.DAL.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/login.css" rel="stylesheet" />
+
+</head>
+<body>
+    @*<div class="container">
+        <div class="row">
+            <div class="col-md-offset-5 col-md-3">
+                <div class="form-login">
+                    <h4>Login to Your Account</h4>
+                    @using (Html.BeginForm("Index", "Login", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    { 
+                         @Html.TextBoxFor(m => m.vEmail, new { @class = "form-control", placeholder = "User Email", required = "required" })<br />
+
+                         @Html.PasswordFor(m => m.vPassword, new { @class = "form-control", placeholder = "Password", required = "required" })<br />
+
+                    <div class="wrapper">
+                        <span class="group-btn">
+                            <input type="submit" value="Log in" class="btn btn-primary btn-md" />
+                        </span>
+                    </div>
+                    }
+                    
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <h1>Login to Your Account</h1><br>
+
+                @using (Html.BeginForm("Index", "Login", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                @Html.TextBoxFor(m => m.vEmail, new { @class = "form-control", placeholder = "User Email", required = "required" })
+                @Html.PasswordFor(m => m.vPassword, new { @class = "form-control", placeholder = "Password", required = "required" })
+                <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                }
+
+       </div>
+    </div>
+</body>
+</html>
+

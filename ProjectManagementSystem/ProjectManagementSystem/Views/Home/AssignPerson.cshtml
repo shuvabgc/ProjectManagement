@@ -1,0 +1,49 @@
+﻿@model ProjectManagementSystem.Models.DAL.AssignedPerson
+<style type="text/css">
+    .table-fixed {
+        height: 200px;
+        overflow-y: auto;
+        width: 100%;
+        margin-top:10px;
+    }
+</style>
+<h2>Assign Resource Person</h2>
+
+@using (Html.BeginForm("AssignPerson", "Home", new { userName = ViewBag.UserName, uid = ViewBag.UserID, status = ViewBag.Status, designation = ViewBag.Designation }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group">
+         <label>Select Project:</label>
+         @Html.DropDownListFor(model => model.vProjectName, new SelectList(ViewBag.ProjectList, "Value", "Text"), new { @class = "form-control", id = "project" })
+    </div>
+    <div class="form-group">
+         <label>Select Resource Person:</label>
+         @Html.DropDownListFor(model => model.vAssignedPersonName, new SelectList(ViewBag.UserList, "Value", "Text"), new { @class = "form-control", id = "user" })
+    </div>
+    <div>
+        <input type="submit" value="Save" class="btn btn-primary btn-md" />
+    </div>
+}
+<div id="column2" class="table-fixed">
+    <table id="userDetails" class="table table-bordered table-responsive">
+        <tr>
+            <th>Project Name</th>
+            <th>Resource Person</th>
+            <th>Designation</th>
+        </tr>
+        @foreach (var item in ViewBag.AssignDetails)
+        {
+
+            <tr class="tableData">
+                <td class="tableData">
+                    @item.vProjectName
+                </td>
+                <td class="tableData">
+                    @item.vAssignedPersonName
+                </td>
+                <td class="tableData">
+                    @item.vAssignedPersonDesignation
+                </td>
+            </tr>
+        }
+    </table>
+</div>

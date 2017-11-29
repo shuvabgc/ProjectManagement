@@ -1,0 +1,183 @@
+﻿@model ProjectManagementSystem.Models.DAL.ProjectInformation
+@{
+    
+}
+<style type="text/css">
+    .highlight {
+        background-color: dimgrey;
+    }
+
+    .table-fixed {
+        height: 200px;
+        overflow-y: auto;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    #row1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    #column1 {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    #column2 {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+
+<div id="row1">
+    <div id="column1" class="col-md-6 row">
+        <h2>Add/Update Project</h2>
+        @using (Html.BeginForm("AddProject", "Home", new { userName = ViewBag.UserName, uid = ViewBag.UserID, status = ViewBag.Status, designation = ViewBag.Designation }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+        {
+            <div class="form-group">
+                <label>Name:</label>
+                @Html.TextBoxFor(m => m.vName, new { @class = "form-control", placeholder = "Name", required = "required", id = "name" })
+            </div>
+            <div class="form-group">
+                <label>Code Name:</label>
+                @Html.TextBoxFor(m => m.vCodeName, new { @class = "form-control", placeholder = "Code Name", required = "required", id = "codeName" })
+            </div>
+            <div class="form-group">
+                <label>Description:</label>
+                @Html.TextAreaFor(m => m.vDescription, new { @class = "form-control", placeholder = "Description", required = "required", id = "description" })
+            </div>
+            <div class="form-group">
+                 <label>Possible Start Date:</label>
+                @Html.TextBoxFor(m => m.dStartDate, new { @class = "form-control", required = "required", id = "startDate", type = "date", @onchange = "getStartDate(event);" })
+            </div>
+            <div class="form-group">
+                 <label>Possible End Date:</label>
+                @Html.TextBoxFor(m => m.dEndDate, new { @class = "form-control", required = "required", id = "endDate", type = "date", @onchange = "getEndDate(event);" })
+            </div>
+            <div class="form-group">
+                 <label>Duration (In Days):</label>
+                @Html.TextBoxFor(m => m.iDurationInDays, new { @class = "form-control", required = "required", id = "durationInDays" })
+            </div>
+            <div class="form-group">
+                 <label>Upload File:</label>
+                 <input type="file" name="postedFile" />
+                 @*@Html.TextBoxFor(m => m.vFilesName, new { @class = "form-control", required = "required", id = "fileName", type = "file", name = "postedFile" })*@
+            </div>
+            <div class="form-group">
+                <label>Status:</label>
+                <div>@Html.RadioButtonFor(m => m.vStatus, "Not Started", new { id = "radio-not-started" }) Not Started</div>
+                <div>@Html.RadioButtonFor(m => m.vStatus, "Started", new { id = "radio-started" }) Started</div>
+                <div>@Html.RadioButtonFor(m => m.vStatus, "Completed", new { id = "radio-completed" }) Completed</div>
+                <div>@Html.RadioButtonFor(m => m.vStatus, "Cancelled", new { id = "radio-cancelled" }) Cancelled</div>
+            </div>
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary btn-md" />
+            </div>
+        }
+    </div>
+    <div id="column2" class="table-fixed">
+        <table id="projectDetails" class="table table-bordered table-responsive">
+            <tr>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Duration</th>
+                <th>Files</th>
+                <th>Status</th>
+                <th style="display:none">ID</th>
+            </tr>
+            @foreach (var item in ViewBag.ProjectDetails)
+            {
+
+                <tr class="tableData">
+                    <td class="tableData">
+                        @item.vName
+                    </td>
+                    <td class="tableData">
+                        @item.vCodeName
+                    </td>
+                    <td class="tableData">
+                        @item.vDescription
+                    </td>
+                    <td class="tableData">
+                        @item.dStartDate.Date.ToString("yyyy-MM-dd")
+                    </td>
+                    <td class="tableData">
+                        @item.dEndDate.Date.ToString("yyyy-MM-dd")
+                    </td>
+                    <td class="tableData">
+                        @item.iDurationInDays
+                    </td>
+                    <td class="tableData">
+                        @item.vFilesName
+                    </td>
+                    <td class="tableData">
+                        @item.vStatus
+                    </td>
+                    <td class="tableData" style="display:none">
+                        @item.iID
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+    </div>
+</div>
+<script src="~/Scripts/jquery.2.1.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+    });
+    function getStartDate(e) {
+        var startDate = (e.target.value);
+        var endDate = document.getElementById("endDate").value;
+        if (startDate && endDate) {
+            calculateDurationInDays(startDate, endDate);
+        }
+        
+    }
+    function getEndDate(e) {
+        var endDate = (e.target.value);
+        var startDate = document.getElementById("startDate").value;
+        if (startDate && endDate) {
+            calculateDurationInDays(startDate, endDate);
+        }
+    }
+    function calculateDurationInDays(startDate, endDate) {
+        var diff = new Date(Date.parse(endDate) - Date.parse(startDate));
+        days = diff / 1000 / 60 / 60 / 24;
+        document.getElementById("durationInDays").value = days;
+    }
+    $("tr.tableData").click(function () {
+        var tableData = $(this).children("td").map(function () {
+            $(this).closest("tr").siblings().removeClass("tableData highlight");
+            $(this).parents("tr").toggleClass("tableData highlight", this.clicked);
+            return $(this).text();
+        }).get();
+
+        document.getElementById("name").value = $.trim(tableData[0]);
+        document.getElementById("codeName").value = $.trim(tableData[1]);
+        document.getElementById("description").value = $.trim(tableData[2]);
+        document.getElementById("startDate").value = $.trim(tableData[3]);
+        document.getElementById("endDate").value = $.trim(tableData[4]);
+        document.getElementById("durationInDays").value = $.trim(tableData[5]);
+        if ($.trim(tableData[7]) == "Not Started") {
+            $("#radio-not-started").prop("checked", true);
+        }
+        else if ($.trim(tableData[7]) == "Started") {
+            $("#radio-started").prop("checked", true);
+        }
+        else if ($.trim(tableData[7]) == "Completed") {
+            $("#radio-completed").prop("checked", true);
+        }
+        else {
+            $("#radio-completed").prop("cancelled", true);
+        }
+    });
+</script>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AssignedPerson">
+    <Key>
+      <PropertyRef Name="iID" />
+    </Key>
+    <Property Name="iID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="iProjectID" Type="int" Nullable="false" />
+    <Property Name="vProjectName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="vAssignedPersonName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="vAssignedPersonDesignation" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectInformation">
+    <Key>
+      <PropertyRef Name="iID" />
+    </Key>
+    <Property Name="iID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="vCodeName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="vDescription" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="dStartDate" Type="datetime" Nullable="false" />
+    <Property Name="dEndDate" Type="datetime" Nullable="false" />
+    <Property Name="iDurationInDays" Type="int" Nullable="false" />
+    <Property Name="vFilesName" Type="varchar(max)" />
+    <Property Name="vStatus" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="iID" />
+    </Key>
+    <Property Name="iID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="vEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="vPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="vStatus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="vDesignation" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="PMSModelStoreContainer">
+    <EntitySet Name="AssignedPerson" EntityType="Self.AssignedPerson" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectInformation" EntityType="Self.ProjectInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

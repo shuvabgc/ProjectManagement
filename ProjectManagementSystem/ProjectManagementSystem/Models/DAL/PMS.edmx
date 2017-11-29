@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AssignedPerson">
+          <Key>
+            <PropertyRef Name="iID" />
+          </Key>
+          <Property Name="iID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iProjectID" Type="int" Nullable="false" />
+          <Property Name="vProjectName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="vAssignedPersonName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="vAssignedPersonDesignation" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectInformation">
+          <Key>
+            <PropertyRef Name="iID" />
+          </Key>
+          <Property Name="iID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="vCodeName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="vDescription" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="dStartDate" Type="datetime" Nullable="false" />
+          <Property Name="dEndDate" Type="datetime" Nullable="false" />
+          <Property Name="iDurationInDays" Type="int" Nullable="false" />
+          <Property Name="vFilesName" Type="varchar(max)" />
+          <Property Name="vStatus" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="iID" />
+          </Key>
+          <Property Name="iID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="vEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="vPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="vStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="vDesignation" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PMSModelStoreContainer">
+          <EntitySet Name="AssignedPerson" EntityType="Self.AssignedPerson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectInformation" EntityType="Self.ProjectInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AssignedPerson">
+          <Key>
+            <PropertyRef Name="iID" />
+          </Key>
+          <Property Name="iID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iProjectID" Type="Int32" Nullable="false" />
+          <Property Name="vProjectName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vAssignedPersonName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vAssignedPersonDesignation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectInformation">
+          <Key>
+            <PropertyRef Name="iID" />
+          </Key>
+          <Property Name="iID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vCodeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="iDurationInDays" Type="Int32" Nullable="false" />
+          <Property Name="vFilesName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="vStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="iID" />
+          </Key>
+          <Property Name="iID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vDesignation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AssignedPersons" EntityType="Self.AssignedPerson" />
+          <EntitySet Name="ProjectInformations" EntityType="Self.ProjectInformation" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PMSModelStoreContainer" CdmEntityContainer="PMSEntities">
+          <EntitySetMapping Name="AssignedPersons">
+            <EntityTypeMapping TypeName="PMSModel.AssignedPerson">
+              <MappingFragment StoreEntitySet="AssignedPerson">
+                <ScalarProperty Name="iID" ColumnName="iID" />
+                <ScalarProperty Name="iProjectID" ColumnName="iProjectID" />
+                <ScalarProperty Name="vProjectName" ColumnName="vProjectName" />
+                <ScalarProperty Name="vAssignedPersonName" ColumnName="vAssignedPersonName" />
+                <ScalarProperty Name="vAssignedPersonDesignation" ColumnName="vAssignedPersonDesignation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectInformations">
+            <EntityTypeMapping TypeName="PMSModel.ProjectInformation">
+              <MappingFragment StoreEntitySet="ProjectInformation">
+                <ScalarProperty Name="iID" ColumnName="iID" />
+                <ScalarProperty Name="vName" ColumnName="vName" />
+                <ScalarProperty Name="vCodeName" ColumnName="vCodeName" />
+                <ScalarProperty Name="vDescription" ColumnName="vDescription" />
+                <ScalarProperty Name="dStartDate" ColumnName="dStartDate" />
+                <ScalarProperty Name="dEndDate" ColumnName="dEndDate" />
+                <ScalarProperty Name="iDurationInDays" ColumnName="iDurationInDays" />
+                <ScalarProperty Name="vFilesName" ColumnName="vFilesName" />
+                <ScalarProperty Name="vStatus" ColumnName="vStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PMSModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="iID" ColumnName="iID" />
+                <ScalarProperty Name="vName" ColumnName="vName" />
+                <ScalarProperty Name="vEmail" ColumnName="vEmail" />
+                <ScalarProperty Name="vPassword" ColumnName="vPassword" />
+                <ScalarProperty Name="vStatus" ColumnName="vStatus" />
+                <ScalarProperty Name="vDesignation" ColumnName="vDesignation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

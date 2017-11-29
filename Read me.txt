@@ -1,0 +1,13 @@
+Dear Sir,
+
+Good Day.
+
+Before, you run my project you have to do check somthing.
+
+1- If your sql server is not SQLEXPRESS version then you have to see a bug. EDMX is not work properly. 
+So you have to delete this and create another. The best way is, if you can access me in your PC. 
+Then I can fix this.(if possible). 
+
+2- I can only done 3 crieria.
+
+N:B: If you don't understand then please knock me. Then I run my project and brief you how its work.

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PMSModelStoreContainer" CdmEntityContainer="PMSEntities">
+    <EntitySetMapping Name="AssignedPersons">
+      <EntityTypeMapping TypeName="PMSModel.AssignedPerson">
+        <MappingFragment StoreEntitySet="AssignedPerson">
+          <ScalarProperty Name="iID" ColumnName="iID" />
+          <ScalarProperty Name="iProjectID" ColumnName="iProjectID" />
+          <ScalarProperty Name="vProjectName" ColumnName="vProjectName" />
+          <ScalarProperty Name="vAssignedPersonName" ColumnName="vAssignedPersonName" />
+          <ScalarProperty Name="vAssignedPersonDesignation" ColumnName="vAssignedPersonDesignation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectInformations">
+      <EntityTypeMapping TypeName="PMSModel.ProjectInformation">
+        <MappingFragment StoreEntitySet="ProjectInformation">
+          <ScalarProperty Name="iID" ColumnName="iID" />
+          <ScalarProperty Name="vName" ColumnName="vName" />
+          <ScalarProperty Name="vCodeName" ColumnName="vCodeName" />
+          <ScalarProperty Name="vDescription" ColumnName="vDescription" />
+          <ScalarProperty Name="dStartDate" ColumnName="dStartDate" />
+          <ScalarProperty Name="dEndDate" ColumnName="dEndDate" />
+          <ScalarProperty Name="iDurationInDays" ColumnName="iDurationInDays" />
+          <ScalarProperty Name="vFilesName" ColumnName="vFilesName" />
+          <ScalarProperty Name="vStatus" ColumnName="vStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="PMSModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="iID" ColumnName="iID" />
+          <ScalarProperty Name="vName" ColumnName="vName" />
+          <ScalarProperty Name="vEmail" ColumnName="vEmail" />
+          <ScalarProperty Name="vPassword" ColumnName="vPassword" />
+          <ScalarProperty Name="vStatus" ColumnName="vStatus" />
+          <ScalarProperty Name="vDesignation" ColumnName="vDesignation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
